@@ -26,9 +26,9 @@ class google-chrome {
   #   refreshonly => true,
   # }
   
-  package { "google-chrome-beta":
+  package { "google-chrome-stable":
     ensure => latest, # to keep current with security updates
-    require => Exec["Google apt-key"],
+    require => Exec["apt-get update"],
   }
   
 }
