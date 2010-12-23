@@ -15,7 +15,7 @@ class google-chrome {
   # Assumes definition elsewhere of an Exec["apt-get update"] - or
   # uncomment below.
   exec { "Google apt-key":
-    command => "/usr/bin/wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | /usr/bin/apt-key add -"
+    command => "/usr/bin/wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | /usr/bin/apt-key add -",
     refreshonly => true,
     notify => Exec["apt-get update"],
   }
