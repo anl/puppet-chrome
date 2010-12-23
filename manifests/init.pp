@@ -1,31 +1,34 @@
 class google-chrome {
 
-  # Assumes definition elsewhere of an Exec["apt-get update"]
+  # Google repository configuration based on
+  # http://www.google.com/linuxrepositories/apt.html
+
   file { "/etc/apt/sources.list.d/google-chrome.list":
     owner => "root",
     group => "root",
     mode => 444,
     source => "puppet:///google-chrome/google-chrome.list",
-    notify => [ Exec["apt-get update"],
-                Exec["Google apt-key"], ],
+    notify => Exec["Google apt-key"],
   }
 
-  ## Exec["apt-get update"] could be something like:
+  # Add Google's apt-key.
+  # Assumes definition elsewhere of an Exec["apt-get update"] - or
+  # uncomment below.
+  exec { "Google apt-key":
+    command => "/usr/bin/wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | /usr/bin/apt-key add -"
+    refreshonly => true,
+    notify => Exec["apt-get update"],
+  }
+
+  ## If not defined elsewhere, uncomment:
   # exec { "apt-get update":
   #   command => "/usr/bin/apt-get update",
   #   refreshonly => true,
   # }
   
-  # Add Google's apt-key:
-  exec { "Google apt-key":
-    command => "/usr/bin/apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0xfbef0d696de1c72ba5a835fe5a9bf3bb4e5e17b5",
-    refreshonly => true,
-  }
-
   package { "google-chrome-beta":
-    ensure => latest,
-    require => [ File["/etc/apt/sources.list.d/google-chrome.list"],
-                 Exec["Google apt-key"] ],
+    ensure => latest, # to keep current with security updates
+    require => Exec["Google apt-key"],
   }
   
 }
