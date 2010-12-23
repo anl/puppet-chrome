@@ -3,7 +3,7 @@ class google-chrome {
   # Google repository configuration based on
   # http://www.google.com/linuxrepositories/apt.html
 
-  file { "/etc/apt/sources.list.d/google-chrome.list":
+  file { "/etc/apt/sources.list.d/google.list":
     owner => "root",
     group => "root",
     mode => 444,
