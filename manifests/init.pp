@@ -25,10 +25,15 @@ class google-chrome {
   #   command => "/usr/bin/apt-get update",
   #   refreshonly => true,
   # }
-  
+
+  # Install latest stable; remove beta first, if present:
+  package { "google-chome-beta:"
+    ensure => absent,
+  }
+    
   package { "google-chrome-stable":
     ensure => latest, # to keep current with security updates
-    require => Exec["apt-get update"],
+    require => [ Exec["apt-get update"], Package["google-chrome-beta"],    
   }
   
 }
