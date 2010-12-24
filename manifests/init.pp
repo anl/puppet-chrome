@@ -27,7 +27,7 @@ class google-chrome {
   # }
 
   # Install latest stable; remove beta first, if present:
-  package { "google-chome-beta":
+  package { "google-chrome-beta":
     ensure => absent,
   }
     
