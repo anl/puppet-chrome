@@ -7,7 +7,7 @@ class google-chrome {
     owner => "root",
     group => "root",
     mode => 444,
-    source => "puppet:///google-chrome/google.list",
+    source => "puppet:///modules/google-chrome/google.list",
     notify => Exec["Google apt-key"],
   }
 
