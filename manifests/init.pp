@@ -1,4 +1,4 @@
-class google-chrome {
+class chrome {
 
   # Google repository configuration based on
   # http://www.google.com/linuxrepositories/apt.html
