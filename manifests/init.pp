@@ -20,11 +20,11 @@ class google-chrome {
     notify => Exec["apt-get update"],
   }
 
-  ## If not defined elsewhere, uncomment:
-  # exec { "apt-get update":
-  #   command => "/usr/bin/apt-get update",
-  #   refreshonly => true,
-  # }
+  # If not defined elsewhere, uncomment:
+   exec { "apt-get update":
+     command => "/usr/bin/apt-get update",
+     refreshonly => true,
+   }
 
   # Install latest stable; remove beta first, if present:
   package { "google-chrome-beta":
