@@ -1,4 +1,4 @@
-class google-chrome {
+class chrome {
 
   # Google repository configuration based on
   # http://www.google.com/linuxrepositories/apt.html
@@ -7,7 +7,7 @@ class google-chrome {
     owner => "root",
     group => "root",
     mode => 444,
-    source => "puppet:///modules/google-chrome/google.list",
+    source => "puppet:///modules/chrome/google.list",
     notify => Exec["Google apt-key"],
   }
 
@@ -20,11 +20,11 @@ class google-chrome {
     notify => Exec["apt-get update"],
   }
 
-  ## If not defined elsewhere, uncomment:
-  # exec { "apt-get update":
-  #   command => "/usr/bin/apt-get update",
-  #   refreshonly => true,
-  # }
+  # If not defined elsewhere, uncomment:
+   exec { "apt-get update":
+     command => "/usr/bin/apt-get update",
+     refreshonly => true,
+   }
 
   # Install latest stable; remove beta first, if present:
   package { "google-chrome-beta":
